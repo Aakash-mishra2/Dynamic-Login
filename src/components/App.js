@@ -17,15 +17,8 @@ function App() {
       };
       });
   }
-  const postData = async (e) =>{
+  const postData = (e) =>{
       e.preventDefault();
-      const { fName, lName, eMail} = contact;
-      fetch("http://localhost:5000/", {
-        method: "POST",
-        body: JSON.stringify({
-          fName, lName, eMail 
-        })
-      })
       console.log(contact);
   }
   return (
@@ -34,7 +27,7 @@ function App() {
         Hello {contact.fName} {contact.lName}
       </h1>
       <p>{contact.email}</p>
-      <form method="post">
+      <form method="post" onSubmit={postData} >
         <input
           onChange={handleChange}
           name="fName"
@@ -53,7 +46,7 @@ function App() {
           onChange={handleChange}
           value={contact.email}
         />
-        <button onClick={ postData }>Submit</button>
+        <button type="submit" >Submit</button>
       </form>
     </div>
   );
